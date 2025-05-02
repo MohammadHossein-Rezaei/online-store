@@ -27,9 +27,11 @@ const Filters: FC<FiltersProps> = ({
   };
 
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = Number(e.target.value);
     const newParams = new URLSearchParams(searchParams);
     newParams.set("minPrice", minPrice.toString());
-    newParams.set("maxPrice", e.target.value);
+    newParams.set("maxPrice", newValue.toString());
+    newParams.set("page", "1");
     setSearchParams(newParams);
   };
 
@@ -43,6 +45,7 @@ const Filters: FC<FiltersProps> = ({
       newParams.set("colors", [...colors, color].join(","));
     }
 
+    newParams.set("page", "1");
     setSearchParams(newParams);
   };
 
@@ -50,6 +53,7 @@ const Filters: FC<FiltersProps> = ({
     const newParams = new URLSearchParams();
     newParams.set("minPrice", priceRange.min.toString());
     newParams.set("maxPrice", priceRange.max.toString());
+    newParams.set("page", "1");
     setSearchParams(newParams);
   };
 
@@ -61,7 +65,7 @@ const Filters: FC<FiltersProps> = ({
           onClick={resetFilters}
           className="text-sm text-indigo-600 hover:text-indigo-800 transition-colors"
         >
-          ریست فیلترها
+          بازنشانی فیلترها
         </button>
       </div>
 
@@ -86,9 +90,7 @@ const Filters: FC<FiltersProps> = ({
       </div>
 
       <div>
-        <h4 className="text-sm font-medium text-gray-700 mb-3">
-          رنگ‌ها ({availableColors.length})
-        </h4>
+        <h4 className="text-sm font-medium text-gray-700 mb-3">رنگ‌ها</h4>
         <div className="flex flex-wrap gap-3">
           {availableColors.map((color) => (
             <div key={color} className="flex flex-col items-center">
