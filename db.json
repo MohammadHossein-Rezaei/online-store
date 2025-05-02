@@ -1,0 +1,180 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "کفش ورزشی مردانه",
+      "price": 750000,
+      "image": "/images/shoe1.jpg",
+      "description": "کفش سبک و مناسب دویدن",
+      "color": "مشکی"
+    },
+    {
+      "id": 2,
+      "name": "کتونی زنانه",
+      "price": 980000,
+      "image": "/images/shoe2.jpg",
+      "description": "طراحی مدرن و راحت",
+      "color": "صورتی"
+    },
+    {
+      "id": 3,
+      "name": "صندل راحتی",
+      "price": 420000,
+      "image": "/images/sandal1.jpg",
+      "description": "مناسب استفاده روزمره در تابستان",
+      "color": "قهوه‌ای"
+    },
+    {
+      "id": 4,
+      "name": "کفش کلاسیک مردانه",
+      "price": 1290000,
+      "image": "/images/shoe3.jpg",
+      "description": "چرم طبیعی با طراحی رسمی",
+      "color": "مشکی"
+    },
+    {
+      "id": 5,
+      "name": "دمپایی روفرشی زنانه",
+      "price": 210000,
+      "image": "/images/slipper1.jpg",
+      "description": "نرم و راحت برای داخل منزل",
+      "color": "بنفش"
+    },
+    {
+      "id": 6,
+      "name": "کفش پیاده‌روی زنانه",
+      "price": 670000,
+      "image": "/images/shoe4.jpg",
+      "description": "طراحی ارگونومیک با زیره نرم",
+      "color": "خاکستری"
+    },
+    {
+      "id": 7,
+      "name": "بوت چرمی مردانه",
+      "price": 1580000,
+      "image": "/images/boot1.jpg",
+      "description": "مناسب فصل پاییز و زمستان",
+      "color": "قهوه‌ای تیره"
+    },
+    {
+      "id": 8,
+      "name": "کفش اسپرت سفید",
+      "price": 850000,
+      "image": "/images/shoe5.jpg",
+      "description": "طراحی مینیمال و شیک",
+      "color": "سفید"
+    },
+    {
+      "id": 9,
+      "name": "کفش بچگانه کارتونی",
+      "price": 300000,
+      "image": "/images/kids1.jpg",
+      "description": "با طرح شخصیت‌های کارتونی",
+      "color": "رنگارنگ"
+    },
+    {
+      "id": 10,
+      "name": "کفش رسمی زنانه",
+      "price": 920000,
+      "image": "/images/shoe6.jpg",
+      "description": "مناسب محیط کار و مهمانی",
+      "color": "زرشکی"
+    },
+    {
+      "id": 11,
+      "name": "کفش راحتی مردانه",
+      "price": 560000,
+      "image": "/images/shoe7.jpg",
+      "description": "قابل استفاده روزانه",
+      "color": "سرمه‌ای"
+    },
+    {
+      "id": 12,
+      "name": "کتونی رانینگ حرفه‌ای",
+      "price": 1280000,
+      "image": "/images/shoe8.jpg",
+      "description": "مخصوص دویدن‌های طولانی",
+      "color": "آبی"
+    },
+    {
+      "id": 13,
+      "name": "صندل مردانه چرمی",
+      "price": 480000,
+      "image": "/images/sandal2.jpg",
+      "description": "طراحی شیک و بادوام",
+      "color": "قهوه‌ای"
+    },
+    {
+      "id": 14,
+      "name": "کفش لژدار زنانه",
+      "price": 830000,
+      "image": "/images/shoe9.jpg",
+      "description": "راحت و مناسب مجالس",
+      "color": "طلایی"
+    },
+    {
+      "id": 15,
+      "name": "دمپایی حوله‌ای",
+      "price": 180000,
+      "image": "/images/slipper2.jpg",
+      "description": "نرم و گرم برای زمستان",
+      "color": "طوسی"
+    },
+    {
+      "id": 16,
+      "name": "کفش اسپرت نخی",
+      "price": 620000,
+      "image": "/images/shoe10.jpg",
+      "description": "قابل شستشو و تنفس‌پذیر",
+      "color": "آبی نفتی"
+    },
+    {
+      "id": 17,
+      "name": "بوت زنانه پاشنه‌دار",
+      "price": 1420000,
+      "image": "/images/boot2.jpg",
+      "description": "مناسب استایل زمستانی",
+      "color": "مشکی براق"
+    },
+    {
+      "id": 18,
+      "name": "کفش پارچه‌ای تابستانی",
+      "price": 390000,
+      "image": "/images/shoe11.jpg",
+      "description": "مناسب هوای گرم",
+      "color": "کرم"
+    },
+    {
+      "id": 19,
+      "name": "کفش پاشنه‌بلند مجلسی",
+      "price": 990000,
+      "image": "/images/shoe12.jpg",
+      "description": "طراحی خاص برای مراسم",
+      "color": "زرشکی"
+    },
+    {
+      "id": 20,
+      "name": "کفش راحتی بند دار",
+      "price": 590000,
+      "image": "/images/shoe13.jpg",
+      "description": "مناسب پیاده‌روی‌های طولانی",
+      "color": "خاکستری"
+    },
+    {
+      "id": 21,
+      "name": "صندل انگشتی زنانه",
+      "price": 340000,
+      "image": "/images/sandal3.jpg",
+      "description": "طراحی تابستانی با رنگ‌های شاد",
+      "color": "قرمز"
+    },
+    {
+      "id": 22,
+      "name": "کفش کوهنوردی مردانه",
+      "price": 1890000,
+      "image": "/images/shoe14.jpg",
+      "description": "زیره مقاوم و ضد لغزش",
+      "color": "سبز تیره"
+    }
+  ]
+}
