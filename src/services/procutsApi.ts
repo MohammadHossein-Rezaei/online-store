@@ -1,8 +1,8 @@
+// در فایل api/products.ts
 import { PRODUCTS_URL } from "./constant";
 import { IProduct } from "./types/IProduct";
 
-export const fetchProducts = async () => {
+export const fetchProducts = async (): Promise<IProduct[]> => {
   const response = await fetch(PRODUCTS_URL);
-  const productList: IProduct[] = await response.json();
-  return productList;
+  return response.json();
 };
