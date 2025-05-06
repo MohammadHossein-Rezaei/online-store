@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IProduct } from "../../services/types/IProduct";
 import { fetchProducts } from "../../services/procutsApi";
+import HeaderComponent from "../header/HeaderComponent";
 
 const ProductDetails: FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -13,18 +14,7 @@ const ProductDetails: FC = () => {
       try {
         setIsLoading(true);
         const products = await fetchProducts();
-
-        console.log("تمام محصولات:", products);
-        console.log("ID دریافت شده از URL:", id, "نوع:", typeof id);
-
-        const foundProduct = products.find((p) => {
-          console.log(
-            `مقایسه: ${p.id} (${typeof p.id}) با ${id} (${typeof id})`
-          );
-          return p.id.toString() === id;
-        });
-
-        console.log("محصول یافت شده:", foundProduct);
+        const foundProduct = products.find((p) => p.id.toString() === id);
         setProduct(foundProduct || null);
       } catch (error) {
         console.error("خطا در دریافت محصول:", error);
@@ -36,39 +26,67 @@ const ProductDetails: FC = () => {
     loadProduct();
   }, [id]);
 
+  const handleAddToCart = () => {
+    console.log("محصول به سبد اضافه شد:", product);
+    alert(`${product?.name} به سبد خرید اضافه شد!`);
+  };
+
   if (isLoading) {
-    return <div className="text-center py-8">در حال بارگذاری...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+      </div>
+    );
   }
 
   if (!product) {
     return (
-      <div className="text-center py-8">
-        <p className="text-red-500">
-          محصول با شناسه {id} یافت نشد. لطفاً از صحت URL مطمئن شوید.
-        </p>
+      <div className="text-center py-12">
+        <HeaderComponent />
+        <p className="text-red-500">محصول یافت نشد</p>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="bg-white rounded-lg shadow-md p-6 max-w-2xl mx-auto">
-        <h1 className="text-2xl font-bold mb-4">{product.name}</h1>
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-64 object-contain mb-4"
-        />
-        <p className="text-gray-700 mb-4">{product.description}</p>
-        <div className="flex items-center justify-between">
-          <span className="text-lg font-bold text-indigo-600">
-            {product.price.toLocaleString()} تومان
-          </span>
-          <div
-            className="w-6 h-6 rounded-full border border-gray-300"
-            style={{ backgroundColor: product.color }}
-            title={product.color}
-          />
+    <div className="pb-12">
+      <HeaderComponent />
+      <div className="container mx-auto px-4 mt-8">
+        <div className="bg-white rounded-xl shadow-md overflow-hidden">
+          <div className="flex flex-col md:flex-row">
+            <div className="md:w-1/2 p-6">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-auto object-cover rounded-lg"
+              />
+            </div>
+
+            <div className="md:w-1/2 p-6">
+              <h1 className="text-2xl font-bold text-gray-800 mb-4">
+                {product.name}
+              </h1>
+              <p className="text-gray-600 mb-6">{product.description}</p>
+
+              <div className="flex items-center mb-6">
+                <span className="text-xl font-bold text-indigo-600">
+                  {product.price.toLocaleString()} تومان
+                </span>
+                <div
+                  className="w-6 h-6 rounded-full border border-gray-300 ml-4"
+                  style={{ backgroundColor: product.color }}
+                  title={product.color}
+                />
+              </div>
+
+              <button
+                onClick={handleAddToCart}
+                className="w-full py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+              >
+                افزودن به سبد خرید
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
