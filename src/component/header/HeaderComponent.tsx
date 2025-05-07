@@ -1,15 +1,20 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import cartIcon from "/public/Image/icons8-cart-50.png";
+import { useCart } from "../../context/CartContext";
+import Cart from "../cart/Cart";
 
 const HeaderComponent = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+  const { cartItems, toggleCart, isCartOpen } = useCart();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      navigate(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
+      navigate(
+        `/products?search=${encodeURIComponent(searchQuery.trim())}&page=1`
+      );
     }
   };
 
@@ -22,7 +27,7 @@ const HeaderComponent = () => {
           <input
             type="search"
             placeholder="جستجوی محصولات..."
-            className="w-full px-4 py-2 rounded-full border border-gray-200 focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 outline-none transition-all"
+            className="w-full px-4 py-2 rounded-full border border-gray-200 focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 outline-none transition-all text-sm"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -42,13 +47,19 @@ const HeaderComponent = () => {
           </ul>
         </nav>
 
-        <button className="p-2 relative">
+        <button
+          onClick={toggleCart}
+          className="p-2 relative hover:bg-gray-100 rounded-full transition-colors"
+        >
           <img src={cartIcon} alt="سبد خرید" className="w-6 h-6" />
-          {/* <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-            3
-          </span> */}
+          {cartItems.length > 0 && (
+            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              {cartItems.reduce((sum, item) => sum + item.quantity, 0)}{" "}
+            </span>
+          )}
         </button>
       </div>
+      {isCartOpen && <Cart />}
     </header>
   );
 };

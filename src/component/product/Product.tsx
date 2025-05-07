@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { IProduct } from "../../services/types/IProduct";
 import { useNavigate } from "react-router";
+import { useCart } from "../../context/CartContext";
 
 interface ProductCardProps {
   product: IProduct;
@@ -11,7 +12,7 @@ const Product: FC<ProductCardProps> = ({ product }) => {
   const handleViewProduct = () => {
     navigate(`/${product.id}`);
   };
-
+  const { addToCart } = useCart();
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
       <div className="relative pb-[75%]">
@@ -50,7 +51,10 @@ const Product: FC<ProductCardProps> = ({ product }) => {
             >
               نمایش محصول
             </button>
-            <button className="py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors text-sm">
+            <button
+              onClick={() => addToCart(product)}
+              className="py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors text-sm"
+            >
               افزودن به سبد
             </button>
           </div>

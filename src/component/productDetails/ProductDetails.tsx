@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { IProduct } from "../../services/types/IProduct";
 import { fetchProducts } from "../../services/procutsApi";
 import HeaderComponent from "../header/HeaderComponent";
+import { useCart } from "../../context/CartContext";
 
 const ProductDetails: FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -26,10 +27,7 @@ const ProductDetails: FC = () => {
     loadProduct();
   }, [id]);
 
-  const handleAddToCart = () => {
-    console.log("محصول به سبد اضافه شد:", product);
-    alert(`${product?.name} به سبد خرید اضافه شد!`);
-  };
+  const { addToCart } = useCart();
 
   if (isLoading) {
     return (
@@ -80,7 +78,7 @@ const ProductDetails: FC = () => {
               </div>
 
               <button
-                onClick={handleAddToCart}
+                onClick={() => addToCart(product)}
                 className="w-full py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
               >
                 افزودن به سبد خرید
