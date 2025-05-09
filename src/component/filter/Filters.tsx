@@ -18,7 +18,11 @@ const Filters: FC<FiltersProps> = ({
   const maxPrice =
     Number(searchParams.get("maxPrice")) ||
     Math.max(...products.map((p) => p.price));
-  const selectedColors = searchParams.get("colors")?.split(",") || [];
+  const selectedColors =
+    searchParams
+      .get("colors")
+      ?.split(",")
+      .filter((color) => color !== "") || [];
 
   const availableColors = [...new Set(products.map((p) => p.color))];
   const priceRange = {
@@ -34,15 +38,22 @@ const Filters: FC<FiltersProps> = ({
     newParams.set("page", "1");
     setSearchParams(newParams);
   };
-
   const handleColorToggle = (color: string) => {
     const newParams = new URLSearchParams(searchParams);
-    const colors = newParams.get("colors")?.split(",") || [];
+    const colors =
+      newParams
+        .get("colors")
+        ?.split(",")
+        .filter((c) => c !== "") || [];
 
-    if (colors.includes(color)) {
-      newParams.set("colors", colors.filter((c) => c !== color).join(","));
+    const updatedColors = colors.includes(color)
+      ? colors.filter((c) => c !== color)
+      : [...colors, color];
+
+    if (updatedColors.length > 0) {
+      newParams.set("colors", updatedColors.join(","));
     } else {
-      newParams.set("colors", [...colors, color].join(","));
+      newParams.delete("colors");
     }
 
     newParams.set("page", "1");
@@ -104,9 +115,7 @@ const Filters: FC<FiltersProps> = ({
                 style={{ backgroundColor: color }}
                 title={color}
               />
-              <span className="text-xs mt-1 text-gray-500">
-                {selectedColors.includes(color) && color}
-              </span>
+              <span className="text-xs mt-1 text-gray-500">{color}</span>
             </div>
           ))}
         </div>

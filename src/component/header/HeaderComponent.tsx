@@ -35,10 +35,16 @@ const HeaderComponent = () => {
 
         <nav className="hidden md:block">
           <ul className="flex space-x-6 space-x-reverse">
-            <li className="px-3 py-2 text-gray-600 hover:text-indigo-600 transition-colors">
+            <li
+              onClick={() => navigate(`/`)}
+              className="px-3 py-2 text-gray-600 hover:text-indigo-600 transition-colors"
+            >
               صفحه اصلی
             </li>
-            <li className="px-3 py-2 text-gray-600 hover:text-indigo-600 transition-colors">
+            <li
+              onClick={() => navigate(`/products`)}
+              className="px-3 py-2 text-gray-600 hover:text-indigo-600 transition-colors"
+            >
               محصولات
             </li>
             <li className="px-3 py-2 text-gray-600 hover:text-indigo-600 transition-colors">

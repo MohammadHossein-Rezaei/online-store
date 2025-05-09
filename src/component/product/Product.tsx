@@ -10,7 +10,7 @@ interface ProductCardProps {
 const Product: FC<ProductCardProps> = ({ product }) => {
   const navigate = useNavigate();
   const handleViewProduct = () => {
-    navigate(`/${product.id}`);
+    navigate(`/products/${product.id}`);
   };
   const { addToCart } = useCart();
   return (
