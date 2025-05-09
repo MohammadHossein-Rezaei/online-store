@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import cartIcon from "/public/Image/icons8-cart-50.png";
+import cartIcon from "/public/images/icons8-cart-50.png";
 import { useCart } from "../../context/CartContext";
 import Cart from "../cart/Cart";
 
@@ -17,11 +17,32 @@ const HeaderComponent = () => {
       );
     }
   };
+  const [clickCount, setClickCount] = useState(0);
+
+  const messages = [
+    "سولی این لوگوعه محصولات پایینه",
+    "بقران این فروشی نیس ",
+    "خدایا بسه دیگه",
+  ];
+
+  const handleClick = () => {
+    if (clickCount < messages.length - 1) {
+      setClickCount(clickCount + 1);
+    } else {
+      setClickCount(0); // بازگشت به حالت اول پس از کلیک سوم
+    }
+    alert(messages[clickCount]);
+  };
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-indigo-600">فروشگاه آنلاین</h1>
+        <h1
+          onClick={handleClick}
+          className=" cursor-pointer text-2xl font-bold text-indigo-600"
+        >
+          فروشگاه آنلاین
+        </h1>
 
         <form onSubmit={handleSearch} className="flex-1 max-w-xl mx-4">
           <input
@@ -37,17 +58,17 @@ const HeaderComponent = () => {
           <ul className="flex space-x-6 space-x-reverse">
             <li
               onClick={() => navigate(`/`)}
-              className="px-3 py-2 text-gray-600 hover:text-indigo-600 transition-colors"
+              className="cursor-pointer px-3 py-2 text-gray-600 hover:text-indigo-600 transition-colors"
             >
               صفحه اصلی
             </li>
             <li
               onClick={() => navigate(`/products`)}
-              className="px-3 py-2 text-gray-600 hover:text-indigo-600 transition-colors"
+              className=" cursor-pointer px-3 py-2 text-gray-600 hover:text-indigo-600 transition-colors"
             >
               محصولات
             </li>
-            <li className="px-3 py-2 text-gray-600 hover:text-indigo-600 transition-colors">
+            <li className="cursor-pointer px-3 py-2 text-gray-600 hover:text-indigo-600 transition-colors">
               تماس با ما
             </li>
           </ul>

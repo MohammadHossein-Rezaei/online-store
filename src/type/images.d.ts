@@ -1,4 +1,14 @@
+declare module "*.jpg" {
+  const path: string;
+  export default path;
+}
+
 declare module "*.png" {
-  const value: string;
-  export default value;
+  const path: string;
+  export default path;
+}
+
+declare module "*.jpeg" {
+  const path: string;
+  export default path;
 }
