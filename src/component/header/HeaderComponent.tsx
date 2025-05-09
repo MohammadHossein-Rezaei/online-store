@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import cartIcon from "/public/images/icons8-cart-50.png";
+import cartIcon from "/images/icons8-cart-50.png";
 import { useCart } from "../../context/CartContext";
 import Cart from "../cart/Cart";
 
@@ -29,7 +29,7 @@ const HeaderComponent = () => {
     if (clickCount < messages.length - 1) {
       setClickCount(clickCount + 1);
     } else {
-      setClickCount(0); // بازگشت به حالت اول پس از کلیک سوم
+      setClickCount(0);
     }
     alert(messages[clickCount]);
   };

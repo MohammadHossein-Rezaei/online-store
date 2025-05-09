@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import Products from "./page/productsPage/Products";
 import ProductDetails from "./component/productDetails/ProductDetails";
 import { CartProvider } from "./context/CartContext";
@@ -29,7 +29,7 @@ function App() {
     };
   }, []);
   return (
-    <BrowserRouter>
+    <HashRouter>
       <CartProvider>
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -37,7 +37,7 @@ function App() {
           <Route path="/products/:id" element={<ProductDetails />} />
         </Routes>
       </CartProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 export default App;

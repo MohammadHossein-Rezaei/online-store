@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, ReactNode, useEffect } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 import { IProduct } from "../services/types/IProduct";
 
 interface CartContextType {
@@ -15,29 +21,29 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-  const [cartItems, setCartItems] = useState<(IProduct & { quantity: number })[]>([]);
+  const [cartItems, setCartItems] = useState<
+    (IProduct & { quantity: number })[]
+  >([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  // بارگذاری از localStorage
   useEffect(() => {
-    const savedCart = localStorage.getItem('cart');
+    const savedCart = localStorage.getItem("cart");
     if (savedCart) {
       setCartItems(JSON.parse(savedCart));
     }
   }, []);
 
-  // ذخیره در localStorage
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cartItems));
+    localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
   const addToCart = (product: IProduct) => {
-    setCartItems(prev => {
-      const existingItem = prev.find(item => item.id === product.id);
+    setCartItems((prev) => {
+      const existingItem = prev.find((item) => item.id === product.id);
       if (existingItem) {
-        return prev.map(item =>
-          item.id === product.id 
-            ? { ...item, quantity: item.quantity + 1 } 
+        return prev.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       }
@@ -46,24 +52,22 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const removeFromCart = (productId: number) => {
-    setCartItems(prev => prev.filter(item => item.id !== productId));
+    setCartItems((prev) => prev.filter((item) => item.id !== productId));
   };
 
   const increaseQuantity = (productId: number) => {
-    setCartItems(prev =>
-      prev.map(item =>
-        item.id === productId 
-          ? { ...item, quantity: item.quantity + 1 } 
-          : item
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
       )
     );
   };
 
   const decreaseQuantity = (productId: number) => {
-    setCartItems(prev =>
-      prev.map(item =>
-        item.id === productId 
-          ? { ...item, quantity: Math.max(1, item.quantity - 1) } 
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === productId
+          ? { ...item, quantity: Math.max(1, item.quantity - 1) }
           : item
       )
     );
@@ -74,20 +78,20 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const toggleCart = () => {
-    setIsCartOpen(prev => !prev);
+    setIsCartOpen((prev) => !prev);
   };
 
   return (
-    <CartContext.Provider 
-      value={{ 
-        cartItems, 
-        addToCart, 
-        removeFromCart, 
-        increaseQuantity, 
-        decreaseQuantity, 
+    <CartContext.Provider
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        increaseQuantity,
+        decreaseQuantity,
         clearCart,
         isCartOpen,
-        toggleCart
+        toggleCart,
       }}
     >
       {children}
