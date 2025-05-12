@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { IProduct } from "../../services/types/IProduct";
 import { fetchProducts } from "../../services/procutsApi";
 import HeaderComponent from "../header/HeaderComponent";
-import { useCart } from "../../context/CartContext";
+import { useCartStore } from "../../context/CartZustand";
 
 const ProductDetails: FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -27,7 +27,7 @@ const ProductDetails: FC = () => {
     loadProduct();
   }, [id]);
 
-  const { addToCart } = useCart();
+  const { addToCart } = useCartStore();
 
   if (isLoading) {
     return (

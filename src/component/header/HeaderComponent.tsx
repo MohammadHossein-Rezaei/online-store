@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import cartIcon from "/images/icons8-cart-50.png";
-import { useCart } from "../../context/CartContext";
+import { useCartStore } from "../../context/CartZustand";
 import Cart from "../cart/Cart";
 
 const HeaderComponent = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
-  const { cartItems, toggleCart, isCartOpen } = useCart();
+  const { cartItems, toggleCart, isCartOpen } = useCartStore();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,30 +17,11 @@ const HeaderComponent = () => {
       );
     }
   };
-  const [clickCount, setClickCount] = useState(0);
-
-  const messages = [
-    "سولی این لوگوعه محصولات پایینه",
-    "بقران این فروشی نیس ",
-    "خدایا بسه دیگه",
-  ];
-
-  const handleClick = () => {
-    if (clickCount < messages.length - 1) {
-      setClickCount(clickCount + 1);
-    } else {
-      setClickCount(0);
-    }
-    alert(messages[clickCount]);
-  };
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        <h1
-          onClick={handleClick}
-          className=" cursor-pointer text-2xl font-bold text-indigo-600"
-        >
+        <h1 className=" cursor-pointer text-2xl font-bold text-indigo-600">
           فروشگاه آنلاین
         </h1>
 

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { IProduct } from "../../services/types/IProduct";
 import { useNavigate } from "react-router";
-import { useCart } from "../../context/CartContext";
+import { useCartStore } from "../../context/CartZustand";
 
 interface ProductCardProps {
   product: IProduct;
@@ -12,8 +12,8 @@ const Product: FC<ProductCardProps> = ({ product }) => {
   const handleViewProduct = () => {
     navigate(`/products/${product.id}`);
   };
-  const { addToCart } = useCart();
-  console.log(product.image);
+  const { addToCart } = useCartStore();
+
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
       <div className="relative pb-[75%]">

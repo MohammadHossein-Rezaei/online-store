@@ -1,5 +1,5 @@
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { useCart } from "../../context/CartContext";
+import { useCartStore } from "../../context/CartZustand";
 
 const Cart = () => {
   const {
@@ -10,7 +10,7 @@ const Cart = () => {
     clearCart,
     isCartOpen,
     toggleCart,
-  } = useCart();
+  } = useCartStore();
 
   const totalPrice = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,

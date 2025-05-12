@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-
 import { fetchProducts } from "../../services/procutsApi";
 import { IProduct } from "../../services/types/IProduct";
 import Product from "../../component/product/Product";
@@ -16,6 +15,8 @@ const LandingPage = () => {
 
         const shuffled = [...products].sort(() => 0.5 - Math.random());
         setFeaturedProducts(shuffled.slice(0, 4));
+      } catch (error) {
+        console.error("Failed to load products:", error);
       } finally {
         setIsLoading(false);
       }
@@ -45,7 +46,7 @@ const LandingPage = () => {
       <section className="py-16 container mx-auto px-4">
         <h2 className="text-2xl font-bold text-center mb-12">محصولات ویژه</h2>
 
-        {isLoading ? (
+        {isLoading ? ( // TODO: تغییر لودینگ
           <div className="flex justify-center">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
           </div>
